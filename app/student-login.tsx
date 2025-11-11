@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function InstructorLoginScreen() {
@@ -19,7 +19,7 @@ export default function InstructorLoginScreen() {
         <Text style={styles.title}>ATTENDSURE</Text>
         <View style={styles.roleBadge}>
           <Ionicons name="school" size={16} color="#0A8A84" />
-          <Text style={styles.subTitle}>Student Login</Text>
+          <Text style={styles.subTitle}>Walay log in</Text>
         </View>
       </View>
 
