@@ -1,12 +1,19 @@
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function CreateEvent() {
+  const navigation = useNavigation();
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       
-      {/* HEADER */}
+      {/* HEADER WITH BACK BUTTON */}
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>ATTENDSURE</Text>
         <Text style={styles.headerSubtitle}>Create New Event</Text>
       </View>
@@ -15,27 +22,48 @@ export default function CreateEvent() {
       <View style={styles.formContainer}>
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Event Title</Text>
-          <TextInput style={styles.input} placeholder="Enter event title" placeholderTextColor="#9CA3AF"/>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Enter event title" 
+            placeholderTextColor="#9CA3AF"
+          />
         </View>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Event Location</Text>
-          <TextInput style={styles.input} placeholder="Enter location" placeholderTextColor="#9CA3AF"/>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Enter location" 
+            placeholderTextColor="#9CA3AF"
+          />
         </View>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Department</Text>
-          <TextInput style={styles.input} placeholder="Enter department" placeholderTextColor="#9CA3AF"/>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Enter department" 
+            placeholderTextColor="#9CA3AF"
+          />
         </View>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>No. of Students</Text>
-          <TextInput style={styles.input} placeholder="Enter number" keyboardType="numeric" placeholderTextColor="#9CA3AF"/>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Enter number" 
+            keyboardType="numeric" 
+            placeholderTextColor="#9CA3AF"
+          />
         </View>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Date and Time</Text>
-          <TextInput style={styles.input} placeholder="Select date & time" placeholderTextColor="#9CA3AF"/>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Select date & time" 
+            placeholderTextColor="#9CA3AF"
+          />
         </View>
 
         <TouchableOpacity style={styles.addBtn}>
@@ -53,7 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8FAFB",
   },
 
-  /* HEADER STYLES LIKE ORGANIZERHOME */
+  /* HEADER STYLES */
   header: {
     backgroundColor: "#0A8A84",
     padding: 24,
@@ -64,17 +92,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
+    position: "relative",
+  },
+  backButton: {
+    position: "absolute",
+    top: 24,
+    left: 24,
+    zIndex: 10,
   },
   headerTitle: {
     color: "#fff",
     fontSize: 24,
     fontWeight: "800",
     letterSpacing: 0.5,
+    textAlign: "center",
   },
   headerSubtitle: {
     color: "#D1F2F0",
     marginTop: 6,
     fontSize: 15,
+    textAlign: "center",
   },
 
   formContainer: {
@@ -106,6 +143,7 @@ const styles = StyleSheet.create({
     borderColor: "#E2E8F0",
     color: "#1E293B",
   },
+
   addBtn: {
     backgroundColor: "#0A8A84",
     paddingVertical: 18,
