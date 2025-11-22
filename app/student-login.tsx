@@ -19,7 +19,7 @@ export default function InstructorLoginScreen() {
         <Text style={styles.title}>ATTENDSURE</Text>
         <View style={styles.roleBadge}>
           <Ionicons name="school" size={16} color="#0A8A84" />
-          <Text style={styles.subTitle}>log in sa</Text>
+          <Text style={styles.subTitle}>Student Log in</Text>
         </View>
       </View>
 

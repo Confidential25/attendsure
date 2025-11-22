@@ -2,11 +2,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function OrganizerHome() {
@@ -75,8 +75,12 @@ export default function OrganizerHome() {
         <Text style={styles.btnText}>Scan QR Code</Text>
         <Ionicons name="chevron-forward" size={18} color="#fff" style={styles.btnChevron} />
       </TouchableOpacity>
+      
+      <TouchableOpacity 
+      style={styles.btnSecondary}
+         onPress={() => router.push("/create-event")}
+      >
 
-      <TouchableOpacity style={styles.btnSecondary}>
         <Ionicons name="add-outline" size={22} color="#0A8A84" />
         <Text style={styles.btnSecondaryText}>Add New Event</Text>
         <Ionicons name="chevron-forward" size={18} color="#0A8A84" style={styles.btnChevron} />
