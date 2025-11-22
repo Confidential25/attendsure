@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-export default function OrganizerHome() {
+export default function StudentHome() {
   const router = useRouter();
 
   return (
@@ -86,11 +86,15 @@ export default function OrganizerHome() {
           <Ionicons name="chevron-forward" size={18} color="#fff" style={styles.btnChevron} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnSecondary}>
+        <TouchableOpacity
+          style={styles.btnSecondary}
+          onPress={() => router.push("/(stabs)/events")} // <-- move it here
+        >
           <Ionicons name="list-outline" size={20} color="#0A8A84" />
           <Text style={styles.btnSecondaryText}>Check Event</Text>
           <Ionicons name="chevron-forward" size={18} color="#0A8A84" style={styles.btnChevron} />
         </TouchableOpacity>
+
       </View>
     </ScrollView>
   );
