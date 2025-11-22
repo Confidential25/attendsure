@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   },
   backText: {
     color: "#0A8A84",
-    fontWeight: "600",
+    fontWeight: "600", 
     fontSize: 15,
   },
 });
