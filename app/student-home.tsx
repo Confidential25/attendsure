@@ -45,8 +45,8 @@ export default function OrganizerHome() {
             <Ionicons name="people-outline" size={24} color="#0A8A84" />
           </View>
           <View style={styles.statContent}>
-            <Text style={styles.statValue}>156</Text>
-            <Text style={styles.statLabel}>Total Students</Text>
+            <Text style={styles.statValue}>6</Text>
+            <Text style={styles.statLabel}>Total Event</Text>
           </View>
         </View>
 
@@ -57,7 +57,7 @@ export default function OrganizerHome() {
               <Ionicons name="checkmark-circle" size={20} color="#10B981" />
             </View>
             <View>
-              <Text style={styles.presenceNumber}>89%</Text>
+              <Text style={styles.presenceNumber}>2</Text>
               <Text style={styles.presenceLabel}>Present</Text>
             </View>
           </View>
@@ -69,7 +69,7 @@ export default function OrganizerHome() {
               <Ionicons name="close-circle" size={20} color="#EF4444" />
             </View>
             <View>
-              <Text style={styles.presenceNumber}>11%</Text>
+              <Text style={styles.presenceNumber}>4</Text>
               <Text style={styles.presenceLabel}>Absent</Text>
             </View>
           </View>
