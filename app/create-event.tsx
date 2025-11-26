@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function CreateEvent() {
@@ -14,7 +13,7 @@ export default function CreateEvent() {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>ATTENDSURE</Text>
+        <Text style={styles.headerTitle}>ATTENDSURES</Text>
         <Text style={styles.headerSubtitle}>Create New Event</Text>
       </View>
 
