@@ -72,7 +72,7 @@ export default function CreateAccount() {
             />
           </View>
 
-          {/* Email */}
+          
           <Text style={styles.label}>Email</Text>
           <View style={styles.inputBox}>
             <MaterialCommunityIcons

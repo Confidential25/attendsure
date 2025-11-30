@@ -2,12 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import React from "react";
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 // ✅ Correct Type
@@ -142,10 +142,13 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E2E8F0",
   },
   itemLeft: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
+  flexDirection: "row",
+  alignItems: "center",
   },
+  itemIcon: {
+    marginRight: 10,
+  },
+
   itemLabel: {
     fontSize: 16,
     fontWeight: "600",

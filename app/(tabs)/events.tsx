@@ -35,12 +35,12 @@ export default function Events() {
 
       {/* EVENT LIST */}
       {[
-        { name: "Orientation", time: "09:15 AM", percent: 80, color: "#BBF7D0" },
-        { name: "Trailblazer", time: "No record", percent: 43, color: "#FECACA" },
-        { name: "Mental Health Day", time: "09:12 AM", percent: 95, color: "#BBF7D0" },
-        { name: "Week of Welcome", time: "No record", percent: 50, color: "#FECACA" },
-        { name: "IT Day", time: "No record", percent: 70, color: "#FECACA" },
-        { name: "Limpaydo!", time: "No record", percent: 60, color: "#FECACA" },
+        { name: "Orientation", time: "09:15 AM" },
+        { name: "Trailblazer", time: "No record" },
+        { name: "Mental Health Day", time: "09:12 AM" },
+        { name: "Week of Welcome", time: "No record" },
+        { name: "IT Day", time: "No record" },
+        { name: "Limpaydo!", time: "No record" },
       ].map((item, index) => (
         <View key={index} style={styles.eventCard}>
           
@@ -65,9 +65,21 @@ export default function Events() {
             </View>
           </View>
 
-          {/* PERCENTAGE BADGE */}
-          <View style={[styles.percentBadge, { backgroundColor: item.color }]}>
-            <Text style={styles.percentText}>{item.percent}%</Text>
+          {/* PRESENT / ABSENT BADGE */}
+          <View
+            style={[
+              styles.percentBadge,
+              { backgroundColor: item.time === "No record" ? "#FEE2E2" : "#DCFCE7" },
+            ]}
+          >
+            <Text
+              style={[
+                styles.percentText,
+                { color: item.time === "No record" ? "#EF4444" : "#10B981" },
+              ]}
+            >
+              {item.time === "No record" ? "Absent" : "Present"}
+            </Text>
           </View>
         </View>
       ))}

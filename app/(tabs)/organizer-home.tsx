@@ -70,30 +70,59 @@ export default function OrganizerHome() {
       {/* QUICK ACTIONS */}
       <Text style={styles.quickTitle}>Quick Actions</Text>
 
+      {/* SCAN QR BUTTON (HEAD version) */}
       <TouchableOpacity
-  style={styles.btnPrimary}
-  onPress={() => router.push("/scan-qr")}
->
-  <Ionicons name="qr-code-outline" size={22} color="#fff" />
-  <Text style={styles.btnText}>Scan QR Code</Text>
-  <Ionicons name="chevron-forward" size={18} color="#fff" style={styles.btnChevron} />
-</TouchableOpacity>
-
-      
-      <TouchableOpacity 
-      style={styles.btnSecondary}
-         onPress={() => router.push("/create-event")}
+        style={styles.btnPrimary}
+        onPress={() => router.push("/scan-qr")}
       >
-
-        <Ionicons name="add-outline" size={22} color="#0A8A84" />
-        <Text style={styles.btnSecondaryText}>Add New Event</Text>
-        <Ionicons name="chevron-forward" size={18} color="#0A8A84" style={styles.btnChevron} />
+        <Ionicons name="qr-code-outline" size={22} color="#fff" />
+        <Text style={styles.btnText}>Scan QR Code</Text>
+        <Ionicons
+          name="chevron-forward"
+          size={18}
+          color="#fff"
+          style={styles.btnChevron}
+        />
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.btnSecondary}>
-        <Ionicons name="settings-outline" size={22} color="#0A8A84" />
+      {/* GENERATE CODE BUTTON (Incoming version) */}
+      <TouchableOpacity style={styles.btnPrimary}>
+        <Ionicons name="qr-code-outline" size={22} color="#fff" />
+        <Text style={styles.btnText}>Generate Code</Text>
+        <Ionicons
+          name="chevron-forward"
+          size={18}
+          color="#fff"
+          style={styles.btnChevron}
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.btnSecondary}
+        onPress={() => router.push("/create-event")}
+      >
+        <Ionicons name="add-outline" size={22} color="#0A8A84" />
+        <Text style={styles.btnSecondaryText}>Add New Event</Text>
+        <Ionicons
+          name="chevron-forward"
+          size={18}
+          color="#0A8A84"
+          style={styles.btnChevron}
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.btnSecondary}
+        onPress={() => router.push("/ManageEventScreen")}
+      >
+        <Ionicons name="create-outline" size={20} color="#0A8A84" />
         <Text style={styles.btnSecondaryText}>Manage Event</Text>
-        <Ionicons name="chevron-forward" size={18} color="#0A8A84" style={styles.btnChevron} />
+        <Ionicons
+          name="chevron-forward"
+          size={18}
+          color="#0A8A84"
+          style={styles.btnChevron}
+        />
       </TouchableOpacity>
     </ScrollView>
   );
