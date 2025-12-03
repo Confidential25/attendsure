@@ -2,12 +2,12 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import React from "react";
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 // ✅ Correct Type
@@ -46,6 +46,7 @@ export default function Settings() {
 
         <View style={{ width: 24 }} />
       </View>
+      
 
       {/* PROFILE SECTION */}
       <View style={styles.profileBox}>
