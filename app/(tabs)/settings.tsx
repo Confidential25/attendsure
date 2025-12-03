@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import { router } from "expo-router";
 import React from "react";
 import {
   Image,
@@ -69,9 +70,13 @@ export default function Settings() {
       </View>
 
       {/* LOGOUT */}
-      <TouchableOpacity style={styles.logoutBtn}>
-        <Text style={styles.logoutText}>Log out</Text>
-      </TouchableOpacity>
+      <TouchableOpacity
+  style={styles.logoutBtn}
+  onPress={() => router.replace("/organizer-login")}
+>
+  <Text style={styles.logoutText}>Log out</Text>
+</TouchableOpacity>
+
 
     </ScrollView>
   );
