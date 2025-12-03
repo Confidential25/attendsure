@@ -11,7 +11,8 @@ export default function CreateEvent() {
       {/* HEADER WITH BACK BUTTON */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back-outline" size={24} color="#fff" />
+
         </TouchableOpacity>
         <Text style={styles.headerTitle}>ATTENDSURE</Text>
         <Text style={styles.headerSubtitle}>Create New Event</Text>
