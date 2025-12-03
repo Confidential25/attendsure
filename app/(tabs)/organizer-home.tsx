@@ -68,22 +68,7 @@ export default function OrganizerHome() {
       </View>
 
       {/* QUICK ACTIONS */}
-      <Text style={styles.quickTitle}>Quick Actions</Text>
-
-      {/* SCAN QR BUTTON (HEAD version) */}
-      <TouchableOpacity
-        style={styles.btnPrimary}
-        onPress={() => router.push("/scan-qr")}
-      >
-        <Ionicons name="qr-code-outline" size={22} color="#fff" />
-        <Text style={styles.btnText}>Scan QR Code</Text>
-        <Ionicons
-          name="chevron-forward"
-          size={18}
-          color="#fff"
-          style={styles.btnChevron}
-        />
-      </TouchableOpacity>
+      <Text style={styles.quickTitle}>Quick Actions</Text>+
 
       {/* GENERATE CODE BUTTON (Incoming version) */}
       <TouchableOpacity style={styles.btnPrimary}>
