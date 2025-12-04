@@ -13,23 +13,24 @@ import {
 
 // ✅ Correct Type
 type SettingItemProps = {
-  icon: keyof typeof Ionicons.glyphMap;  // ← FIXED
+  icon: keyof typeof Ionicons.glyphMap;
   label: string;
   value?: string;
+  onPress?: () => void;
 };
 
-function SettingItem({ icon, label, value }: SettingItemProps) {
+function SettingItem({ icon, label, value, onPress }: SettingItemProps) {
   return (
-    <TouchableOpacity style={styles.settingItem}>
+    <TouchableOpacity style={styles.settingItem} onPress={onPress}>
       <View style={styles.itemLeft}>
         <Ionicons name={icon} size={21} color="#1E293B" />
         <Text style={styles.itemLabel}>{label}</Text>
       </View>
-
       {value && <Text style={styles.itemValue}>{value}</Text>}
     </TouchableOpacity>
   );
 }
+
 
 export default function Settings() {
   const navigation = useNavigation(); // ← Add this
@@ -66,7 +67,12 @@ export default function Settings() {
         <SettingItem icon="notifications-outline" label="Notifications" value="ON" />
         <SettingItem icon="language-outline" label="Language" value="English" />
         <SettingItem icon="color-palette-outline" label="Theme" value="Light mode" />
-        <SettingItem icon="information-circle-outline" label="About us" />
+  <SettingItem
+  icon="information-circle-outline"
+  label="About us"
+  onPress={() => router.push("/aboutus")}
+/>
+
       </View>
 
       {/* LOGOUT */}

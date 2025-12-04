@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AboutUs() {
   const router = useRouter();
@@ -16,11 +16,7 @@ export default function AboutUs() {
         <Text style={styles.headerTitle}>ABOUT US</Text>
       </View>
 
-      {/* Icon */}
-      <Image
-  source={require("../assets/opaw.png")}
-  style={styles.icon}
-/>
+     
 
 
       {/* Description */}
