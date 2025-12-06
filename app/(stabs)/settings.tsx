@@ -61,7 +61,12 @@ export default function Settings() {
 
       {/* SETTINGS LIST */}
       <View style={styles.settingsCard}>
-        <SettingItem icon="person-outline" label="Edit profile information" />
+        <SettingItem 
+  icon="person-outline" 
+  label="Edit profile information"
+  onPress={() => router.push("/edit-profile")}
+/>
+
         <SettingItem icon="notifications-outline" label="Notifications" value="ON" />
         <SettingItem icon="language-outline" label="Language" value="English" />
         <SettingItem icon="color-palette-outline" label="Theme" value="Light mode" />

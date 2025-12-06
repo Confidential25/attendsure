@@ -12,6 +12,17 @@ import {
 export default function OrganizerHome() {
   const router = useRouter();
 
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/u/0/";
+
+const handleGenerateQR = () => {
+  router.push({
+    pathname: "/qr-screen",
+    params: { link: GOOGLE_FORM_URL },
+  });
+};
+
+
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       
@@ -71,16 +82,18 @@ export default function OrganizerHome() {
       <Text style={styles.quickTitle}>Quick Actions</Text>+
 
       {/* GENERATE CODE BUTTON (Incoming version) */}
-      <TouchableOpacity style={styles.btnPrimary}>
-        <Ionicons name="qr-code-outline" size={22} color="#fff" />
-        <Text style={styles.btnText}>Generate Code</Text>
-        <Ionicons
-          name="chevron-forward"
-          size={18}
-          color="#fff"
-          style={styles.btnChevron}
-        />
-      </TouchableOpacity>
+    <TouchableOpacity style={styles.btnPrimary} onPress={handleGenerateQR}>
+  <Ionicons name="qr-code-outline" size={22} color="#fff" />
+  <Text style={styles.btnText}>Generate Code</Text>
+  <Ionicons
+    name="chevron-forward"
+    size={18}
+    color="#fff"
+    style={styles.btnChevron}
+  />
+</TouchableOpacity>
+
+
 
       <TouchableOpacity
         style={styles.btnSecondary}
