@@ -8,10 +8,12 @@ export default function InstructorScanScreen() {
   const [scanned, setScanned] = useState(false);
   const router = useRouter();
 
+  // Reset scan when screen loads
   useEffect(() => {
     setScanned(false);
   }, []);
 
+  // Permission loading
   if (!permission) {
     return (
       <View style={styles.center}>
@@ -20,6 +22,7 @@ export default function InstructorScanScreen() {
     );
   }
 
+  // If permission not granted
   if (!permission.granted) {
     return (
       <View style={styles.center}>
@@ -38,18 +41,19 @@ export default function InstructorScanScreen() {
       <CameraView
         style={styles.camera}
         facing="back"
-        barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
+        barcodeScannerSettings={{
+          barcodeTypes: ["qr"]
+        }}
         onBarcodeScanned={(barcode) => {
-          if (!scanned) {
+          if (!scanned && barcode?.data) {
             setScanned(true);
             console.log("QR SCANNED:", barcode.data);
 
-            //FIXED: Correct Expo Router format
+            // Correct navigation to scan result page
             router.push({
-              pathname: "/scan-qr",
+              pathname: "/scan-result",
               params: { qr: barcode.data },
             });
-
           }
         }}
       />
