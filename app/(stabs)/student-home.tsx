@@ -1,16 +1,36 @@
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import api from "../../hooks/http"; // make sure this path is correct
 
 export default function StudentHome() {
   const router = useRouter();
+  const [profile, setProfile] = useState({
+    first_name: "",
+    last_name: "",
+    id_number: "",
+  });
+
+  // Fetch student profile on mount
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = await AsyncStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const response = await api.get("auth/users/me/", {
+          headers: { Authorization: "Token " + token },
+        });
+        setProfile(response.data);
+      } catch (error) {
+        console.log("Error fetching profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -18,7 +38,9 @@ export default function StudentHome() {
       {/* HEADER */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>ATTENDSURE</Text>
-        <Text style={styles.headerSubtitle}>Welcome back, Student</Text>
+        <Text style={styles.headerSubtitle}>
+          Welcome back, {profile.first_name || profile.id_number}
+        </Text>
       </View>
 
       {/* EVENT CARD */}
@@ -31,7 +53,6 @@ export default function StudentHome() {
             <Text style={styles.eventBadgeText}>In Progress</Text>
           </View>
         </View>
-
         <View style={styles.eventIcon}>
           <Ionicons name="calendar-outline" size={28} color="#0A8A84" />
         </View>
@@ -39,7 +60,6 @@ export default function StudentHome() {
 
       {/* STATS OVERVIEW */}
       <View style={styles.statsContainer}>
-        {/* STUDENT COUNT */}
         <View style={styles.statCard}>
           <View style={styles.statIconWrapper}>
             <Ionicons name="people-outline" size={24} color="#0A8A84" />
@@ -50,7 +70,6 @@ export default function StudentHome() {
           </View>
         </View>
 
-        {/* PRESENT & ABSENT */}
         <View style={styles.presenceCard}>
           <View style={styles.presenceItem}>
             <View style={styles.presenceIconWrapper}>
@@ -79,30 +98,34 @@ export default function StudentHome() {
       {/* QUICK ACTIONS */}
       <View style={styles.quickActionsSection}>
         <Text style={styles.quickTitle}>Quick Actions</Text>
- {/* SCAN QR BUTTON (HEAD version) */}
-      <TouchableOpacity
-        style={styles.btnPrimary}
-        onPress={() => router.push("/scan-qr")}
-      >
-        <Ionicons name="qr-code-outline" size={22} color="#fff" />
-        <Text style={styles.btnText}>Scan QR Code</Text>
-        <Ionicons
-          name="chevron-forward"
-          size={18}
-          color="#fff"
-          style={styles.btnChevron}
-        />
-      </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.btnPrimary}
+          onPress={() => router.push("/scan-qr")}
+        >
+          <Ionicons name="qr-code-outline" size={22} color="#fff" />
+          <Text style={styles.btnText}>Scan QR Code</Text>
+          <Ionicons
+            name="chevron-forward"
+            size={18}
+            color="#fff"
+            style={styles.btnChevron}
+          />
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.btnSecondary}
-          onPress={() => router.push("/(stabs)/events")} // <-- move it here
+          onPress={() => router.push("/(stabs)/events")}
         >
           <Ionicons name="list-outline" size={20} color="#0A8A84" />
           <Text style={styles.btnSecondaryText}>Check Event</Text>
-          <Ionicons name="chevron-forward" size={18} color="#0A8A84" style={styles.btnChevron} />
+          <Ionicons
+            name="chevron-forward"
+            size={18}
+            color="#0A8A84"
+            style={styles.btnChevron}
+          />
         </TouchableOpacity>
-
       </View>
     </ScrollView>
   );
@@ -136,7 +159,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 15,
   },
-
   eventCard: {
     flexDirection: "row",
     backgroundColor: "#fff",
@@ -151,182 +173,30 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: "#0A8A84",
   },
-  eventLabel: {
-    color: "#64748B",
-    fontSize: 13,
-    fontWeight: "500",
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-  },
-  eventTitle: {
-    fontSize: 22,
-    fontWeight: "700",
-    marginTop: 6,
-    color: "#1E293B",
-  },
-  eventBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 8,
-    backgroundColor: "#DCFCE7",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    alignSelf: "flex-start",
-  },
-  liveDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: "#10B981",
-    marginRight: 6,
-  },
-  eventBadgeText: {
-    color: "#059669",
-    fontSize: 12,
-    fontWeight: "600",
-  },
-  eventIcon: {
-    backgroundColor: "#E0F7F6",
-    padding: 14,
-    borderRadius: 14,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  statsContainer: {
-    marginBottom: 24,
-  },
-  statCard: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
-    padding: 20,
-    borderRadius: 16,
-    marginBottom: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 10,
-    elevation: 2,
-    alignItems: "center",
-  },
-  statIconWrapper: {
-    backgroundColor: "#E0F7F6",
-    padding: 12,
-    borderRadius: 12,
-    marginRight: 16,
-  },
-  statContent: {
-    flex: 1,
-  },
-  statLabel: {
-    color: "#64748B",
-    fontSize: 14,
-    marginTop: 2,
-  },
-  statValue: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#1E293B",
-  },
-
-  presenceCard: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
-    padding: 20,
-    borderRadius: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 10,
-    elevation: 2,
-    justifyContent: "space-around",
-  },
-  presenceItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-  },
-  presenceIconWrapper: {
-    backgroundColor: "#DCFCE7",
-    padding: 10,
-    borderRadius: 10,
-    marginRight: 12,
-  },
-  absentIcon: {
-    backgroundColor: "#FEE2E2",
-  },
-  presenceNumber: {
-    fontSize: 24,
-    fontWeight: "700",
-    color: "#1E293B",
-  },
-  presenceLabel: {
-    color: "#64748B",
-    fontSize: 13,
-    marginTop: 2,
-  },
-  divider: {
-    width: 1,
-    backgroundColor: "#E2E8F0",
-    marginHorizontal: 16,
-  },
-
-  quickActionsSection: {
-    marginTop: 4,
-  },
-  quickTitle: {
-    marginBottom: 14,
-    fontWeight: "700",
-    fontSize: 18,
-    color: "#1E293B",
-  },
-
-  btnPrimary: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#0A8A84",
-    padding: 18,
-    borderRadius: 14,
-    marginBottom: 12,
-    shadowColor: "#0A8A84",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  btnText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
-    marginLeft: 10,
-    flex: 1,
-  },
-  btnChevron: {
-    marginLeft: "auto",
-  },
-
-  btnSecondary: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 18,
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: "#E2E8F0",
-    borderRadius: 14,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 1,
-  },
-  btnSecondaryText: {
-    fontSize: 16,
-    fontWeight: "600",
-    marginLeft: 10,
-    color: "#0A8A84",
-    flex: 1,
-  },
+  eventLabel: { color: "#64748B", fontSize: 13, fontWeight: "500", textTransform: "uppercase", letterSpacing: 0.5 },
+  eventTitle: { fontSize: 22, fontWeight: "700", marginTop: 6, color: "#1E293B" },
+  eventBadge: { flexDirection: "row", alignItems: "center", marginTop: 8, backgroundColor: "#DCFCE7", paddingHorizontal: 10, paddingVertical: 4, borderRadius: 12, alignSelf: "flex-start" },
+  liveDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: "#10B981", marginRight: 6 },
+  eventBadgeText: { color: "#059669", fontSize: 12, fontWeight: "600" },
+  eventIcon: { backgroundColor: "#E0F7F6", padding: 14, borderRadius: 14, justifyContent: "center", alignItems: "center" },
+  statsContainer: { marginBottom: 24 },
+  statCard: { flexDirection: "row", backgroundColor: "#fff", padding: 20, borderRadius: 16, marginBottom: 12, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 10, elevation: 2, alignItems: "center" },
+  statIconWrapper: { backgroundColor: "#E0F7F6", padding: 12, borderRadius: 12, marginRight: 16 },
+  statContent: { flex: 1 },
+  statLabel: { color: "#64748B", fontSize: 14, marginTop: 2 },
+  statValue: { fontSize: 28, fontWeight: "700", color: "#1E293B" },
+  presenceCard: { flexDirection: "row", backgroundColor: "#fff", padding: 20, borderRadius: 16, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 10, elevation: 2, justifyContent: "space-around" },
+  presenceItem: { flexDirection: "row", alignItems: "center", flex: 1 },
+  presenceIconWrapper: { backgroundColor: "#DCFCE7", padding: 10, borderRadius: 10, marginRight: 12 },
+  absentIcon: { backgroundColor: "#FEE2E2" },
+  presenceNumber: { fontSize: 24, fontWeight: "700", color: "#1E293B" },
+  presenceLabel: { color: "#64748B", fontSize: 13, marginTop: 2 },
+  divider: { width: 1, backgroundColor: "#E2E8F0", marginHorizontal: 16 },
+  quickActionsSection: { marginTop: 4 },
+  quickTitle: { marginBottom: 14, fontWeight: "700", fontSize: 18, color: "#1E293B" },
+  btnPrimary: { flexDirection: "row", alignItems: "center", justifyContent: "center", backgroundColor: "#0A8A84", padding: 18, borderRadius: 14, marginBottom: 12, shadowColor: "#0A8A84", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 8, elevation: 4 },
+  btnText: { color: "#fff", fontSize: 16, fontWeight: "600", marginLeft: 10, flex: 1 },
+  btnChevron: { marginLeft: "auto" },
+  btnSecondary: { flexDirection: "row", alignItems: "center", justifyContent: "center", padding: 18, backgroundColor: "#fff", borderWidth: 2, borderColor: "#E2E8F0", borderRadius: 14, shadowColor: "#000", shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 1 },
+  btnSecondaryText: { fontSize: 16, fontWeight: "600", marginLeft: 10, color: "#0A8A84", flex: 1 },
 });

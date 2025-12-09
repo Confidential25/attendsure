@@ -64,7 +64,7 @@ export default function Settings() {
         <SettingItem 
   icon="person-outline" 
   label="Edit profile information"
-  onPress={() => router.push("/edit-profile")}
+  onPress={() => router.push("../edit-profile")}
 />
 
         <SettingItem icon="notifications-outline" label="Notifications" value="ON" />

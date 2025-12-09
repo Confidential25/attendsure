@@ -66,12 +66,12 @@ export default function Settings() {
               <SettingItem 
         icon="person-outline" 
         label="Edit profile information"
-        onPress={() => router.push("/edit-profile")}
+        onPress={() => router.push("../edit-profile")}
       />
         <SettingItem icon="notifications-outline" label="Notifications" value="ON" />
         <SettingItem icon="language-outline" label="Language" value="English" />
         <SettingItem icon="color-palette-outline" label="Theme" value="Light mode" />
-  <SettingItem
+  <SettingItem 
   icon="information-circle-outline"
   label="About us"
   onPress={() => router.push("/aboutus")}
