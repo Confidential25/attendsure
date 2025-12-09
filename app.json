@@ -21,7 +21,6 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "permissions": [
-        "android.permission.CAMERA",
         "android.permission.CAMERA"
       ],
       "package": "com.anonymous.Attend_App"
@@ -49,6 +48,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f3c843bd-8faa-4782-bbf2-a111b88661b6"
+      }
     }
   }
 }
